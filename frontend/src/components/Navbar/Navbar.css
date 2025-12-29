@@ -1,0 +1,179 @@
+/* --- Base Desktop Styles --- */
+.navbar {
+  padding: 20px 4%; /* Responsive horizontal padding */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar .logo {
+  width: 140px;
+}
+
+.navbar-menu {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+  color: #49557e;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.navbar-menu li {
+  position: relative; /* Required for the absolute positioning of the underline */
+  padding-bottom: 2px;
+}
+
+/* The "Progress Bar" Underline */
+.navbar-menu li::after {
+  content: "";
+  position: absolute;
+  bottom: -2px; /* Position it at the bottom */
+  left: 0;
+  width: 0; /* Start with 0 width */
+  height: 3px;
+  background-color: tomato; /* Progress bar color */
+  transition: width 0.4s ease-in-out; /* This creates the "flow" effect */
+  border-radius: 10px;
+}
+
+/* Flow the bar to 100% width on Hover */
+.navbar-menu li:hover::after {
+  width: 100%;
+}
+
+/* Keep the bar at 100% width when Active */
+.navbar-menu li.active::after {
+  width: 100%;
+}
+
+/* Optional: change text color when active to match the bar */
+.navbar-menu li.active {
+  color: #212121;
+  font-weight: 500;
+}
+
+/* REMOVED CONFLICTING BORDER-BOTTOM RULE */
+/* The animated ::after pseudo-element handles the underline */
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.navbar-cart-container {
+  position: relative;
+}
+
+.navbar-right .dot {
+  position: absolute;
+  min-width: 8px;
+  min-height: 8px;
+  background-color: tomato;
+  border-radius: 50%;
+  top: -5px;
+  right: -5px;
+}
+
+.signin-btn {
+  background: transparent;
+  font-size: 15px;
+  color: #49557e;
+  border: 1px solid tomato;
+  padding: 8px 25px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.signin-btn:hover {
+  background-color: #fff4f2;
+}
+
+/* Hide Hamburger by default */
+.hamburger {
+  display: none;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.hamburger .line {
+  width: 25px;
+  height: 3px;
+  background-color: #49557e;
+  transition: 0.3s;
+}
+
+/* --- Responsive Media Queries --- */
+
+/* For Tablets and Small Laptops */
+@media (max-width: 1050px) {
+  .navbar .logo { 
+    width: 120px; 
+  }
+  
+  .navbar-menu { 
+    gap: 15px; 
+    font-size: 16px; 
+  }
+  
+  .navbar-right { 
+    gap: 20px; 
+  }
+}
+
+/* For Mobile Devices (Phones) */
+@media (max-width: 750px) {
+  .hamburger {
+    display: flex; /* Show hamburger icon */
+  }
+
+  .navbar-menu {
+    display: none; /* Hide default menu */
+    flex-direction: column;
+    position: absolute;
+    top: 70px;
+    right: 4%;
+    background-color: white;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
+    padding: 20px;
+    border-radius: 8px;
+    width: 200px;
+    z-index: 10;
+  }
+
+  /* When mobile menu is toggled 'on' */
+  .navbar-menu.mobile-visible {
+    display: flex;
+    animation: slideDown 0.3s ease;
+  }
+
+  .navbar-menu li {
+    font-size: 18px;
+    padding: 10px 0;
+  }
+
+  /* Optional: Resize other elements for mobile */
+  .signin-btn {
+    padding: 7px 15px;
+    font-size: 14px;
+  }
+  
+  .search-icon-img {
+    width: 20px;
+  }
+}
+
+/* Smooth slide-down animation for mobile menu */
+@keyframes slideDown {
+  from { 
+    opacity: 0; 
+    transform: translateY(-10px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
