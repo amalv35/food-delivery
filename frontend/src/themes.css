@@ -1,0 +1,45 @@
+/* Default Light Theme */
+:root {
+  --bg-gradient: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  --bg-card: rgba(255, 255, 255, 0.8);
+  --bg-card-solid: #ffffff;
+  
+  --text-primary: #212121;
+  --text-secondary: #49557e;
+  --text-muted: #6c757d;
+  
+  --border-color: rgba(0, 0, 0, 0.1);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.2);
+  
+  /* Orange accents stay the same */
+  --accent-primary: #ff6b35;
+  --accent-secondary: #ff8c42;
+  --accent-gradient: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+  --bg-gradient: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  --bg-card: linear-gradient(135deg, #3d3d3d 0%, #4a4a4a 100%);
+  --bg-card-solid: #2d2d2d;
+  
+  --text-primary: #ffffff;
+  --text-secondary: #e0e0e0;
+  --text-muted: #b0b0b0;
+  
+  --border-color: rgba(255, 107, 53, 0.2);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Apply gradient to body - unified background */
+body {
+  background: var(--bg-gradient);
+  background-attachment: fixed; /* Keeps gradient fixed during scroll */
+  color: var(--text-primary);
+  transition: background 0.3s ease, color 0.3s ease;
+  min-height: 100vh;
+}

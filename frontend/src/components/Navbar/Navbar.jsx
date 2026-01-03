@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import "./navbar.css";
 import { assets } from "../../assets/assets";
+import ThemeToggle from "../Themes/theme"
 
 const Navbar = () => {
   const [menu, setMenu] = useState("home");
   const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
 
   return (
     <nav className="navbar">
@@ -39,11 +41,36 @@ const Navbar = () => {
       </ul>
 
       <div className="navbar-right">
-        <img src={assets.search_icon} alt="search" className="search-icon-img" />
+      {showSearch && (
+  <input 
+    type="text" 
+    placeholder="Search..." 
+    className="search-input"
+    autoFocus
+    onBlur={() => setShowSearch(false)}
+  />
+)}
+
+<svg
+  width={24}
+  height={24}
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="var(--text-primary)"
+  strokeWidth="2"
+  strokeLinecap="round"
+  strokeLinejoin="round"
+  className="search-icon-svg"
+  onClick={() => setShowSearch(!showSearch)}
+>
+  <circle cx="11" cy="11" r="8" />
+  <path d="m21 21-4.35-4.35" />
+</svg>
         <div className="navbar-cart-container">
           <img src={assets.basket_icon} alt="cart" />
           <div className="dot"></div>
         </div>
+          <ThemeToggle />
         <button className="signin-btn">Sign in</button>
 
         {/* Hamburger Menu Icon (Visible only on mobile) */}

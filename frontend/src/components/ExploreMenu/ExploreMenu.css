@@ -7,14 +7,14 @@
 }
 
 .explore-menu h1 {
-    color: #262626;
+    color: var(--text-primary);
     font-weight: 600;
     font-size: max(3vw, 28px);
 }
 
 .explore-menu-text {
     max-width: 60%;
-    color: #808080;
+    color: var(--text-primary);
     font-size: max(1vw, 14px);
     line-height: 1.6;
 }
@@ -71,7 +71,7 @@
 
 .explore-menu-list-item p {
     margin-top: 5px;
-    color: #747474;
+    color: var(--text-secondary);
     font-size: max(1.1vw, 14px);
     font-weight: 500;
     cursor: pointer;

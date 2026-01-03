@@ -6,7 +6,7 @@
     transition: all 0.4s ease;
     display: flex;
     flex-direction: column;
-    background-color: white;
+    background-color: var(--bg-card);
     overflow: hidden;
     animation: fadeIn 1s;
     cursor: pointer;

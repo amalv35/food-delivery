@@ -9,7 +9,7 @@
 .food-display h2 {
     font-size: max(2.5vw, 32px); 
     font-weight: 700;
-    color: #1a1a1a;
+    color: var(--text-primary);
     margin-bottom: 40px;
     text-transform: capitalize;
     letter-spacing: -0.5px;

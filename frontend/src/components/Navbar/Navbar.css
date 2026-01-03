@@ -1,60 +1,96 @@
 /* --- Base Desktop Styles --- */
 .navbar {
-  padding: 20px 4%; /* Responsive horizontal padding */
+  padding: 20px 4%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background: var(--bg-card);
+   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 2px solid rgba(255, 107, 53, 0.1);
+}
+
+.navbar {
+  background: var(--bg-card-solid);
+}
+
+.navbar-menu {
+  color: var(--text-secondary);
+}
+
+.navbar-menu li:hover {
+  color: var(--text-primary);
+}
+
+.navbar-menu li.active {
+  color: var(--accent-primary);
+}
+
+.signin-btn {
+  background: transparent;
+  color: var(--text-primary);
+  border: 2px solid var(--accent-primary);
 }
 
 .navbar .logo {
   width: 140px;
+  filter: brightness(1.2);
+  transition: transform 0.3s ease;
+}
+
+.navbar .logo:hover {
+  transform: scale(1.05);
 }
 
 .navbar-menu {
   display: flex;
   list-style: none;
   gap: 20px;
-  color: #49557e;
+  color: var(--text-primary);
   font-size: 17px;
   cursor: pointer;
 }
 
 .navbar-menu li {
-  position: relative; /* Required for the absolute positioning of the underline */
+  position: relative;
   padding-bottom: 2px;
+  transition: color 0.3s ease;
 }
 
-/* The "Progress Bar" Underline */
+/* The "Progress Bar" Underline with Orange */
 .navbar-menu li::after {
   content: "";
   position: absolute;
-  bottom: -2px; /* Position it at the bottom */
+  bottom: -2px;
   left: 0;
-  width: 0; /* Start with 0 width */
+  width: 0;
   height: 3px;
-  background-color: tomato; /* Progress bar color */
-  transition: width 0.4s ease-in-out; /* This creates the "flow" effect */
+  background: linear-gradient(90deg, #ff6b35, #ff8c42);
+  transition: width 0.4s ease-in-out;
   border-radius: 10px;
+  box-shadow: 0 0 8px rgba(255, 107, 53, 0.4);
 }
 
 /* Flow the bar to 100% width on Hover */
+.navbar-menu li:hover {
+  color: #ffffff;
+}
+
 .navbar-menu li:hover::after {
   width: 100%;
 }
 
 /* Keep the bar at 100% width when Active */
-.navbar-menu li.active::after {
-  width: 100%;
-}
-
-/* Optional: change text color when active to match the bar */
 .navbar-menu li.active {
-  color: #212121;
+  color: #ff6b35;
   font-weight: 500;
 }
 
-/* REMOVED CONFLICTING BORDER-BOTTOM RULE */
-/* The animated ::after pseudo-element handles the underline */
+.navbar-menu li.active::after {
+  width: 100%;
+}
 
 .navbar-right {
   display: flex;
@@ -64,31 +100,81 @@
 
 .navbar-cart-container {
   position: relative;
+  transition: transform 0.3s ease;
+}
+
+.navbar-cart-container:hover {
+  transform: scale(1.1);
 }
 
 .navbar-right .dot {
   position: absolute;
   min-width: 8px;
   min-height: 8px;
-  background-color: tomato;
+  background: linear-gradient(135deg, #ff6b35, #ff8c42);
   border-radius: 50%;
   top: -5px;
   right: -5px;
+  box-shadow: 0 0 8px rgba(255, 107, 53, 0.6);
+  animation: pulse 2s infinite;
+}
+
+.search-icon-img {
+  filter: brightness(0) invert(1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.search-icon-img:hover {
+  filter: brightness(0) invert(1) drop-shadow(0 0 5px rgba(255, 107, 53, 0.8));
+  transform: scale(1.1);
+}
+
+.basket-icon-img {
+  filter: brightness(0) invert(1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.basket-icon-img:hover {
+  filter: brightness(0) invert(1) drop-shadow(0 0 5px rgba(255, 107, 53, 0.8));
 }
 
 .signin-btn {
   background: transparent;
   font-size: 15px;
-  color: #49557e;
-  border: 1px solid tomato;
+  color: var(--text-primary);
+  border: 2px solid #ff6b35;
   padding: 8px 25px;
   border-radius: 50px;
   cursor: pointer;
-  transition: 0.3s;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  position: relative;
+  overflow: hidden;
+}
+
+.signin-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+  transition: left 0.4s ease;
+  z-index: -1;
+}
+
+.signin-btn:hover::before {
+  left: 0;
 }
 
 .signin-btn:hover {
-  background-color: #fff4f2;
+  color: #ffffff;
+  border-color: #ff8c42;
+  box-shadow: 0 5px 20px rgba(255, 107, 53, 0.4);
+  transform: translateY(-2px);
 }
 
 /* Hide Hamburger by default */
@@ -102,8 +188,13 @@
 .hamburger .line {
   width: 25px;
   height: 3px;
-  background-color: #49557e;
+  background-color: #ffffff;
   transition: 0.3s;
+  border-radius: 2px;
+}
+
+.hamburger:hover .line {
+  background: linear-gradient(90deg, #ff6b35, #ff8c42);
 }
 
 /* --- Responsive Media Queries --- */
@@ -127,21 +218,23 @@
 /* For Mobile Devices (Phones) */
 @media (max-width: 750px) {
   .hamburger {
-    display: flex; /* Show hamburger icon */
+    display: flex;
   }
 
   .navbar-menu {
-    display: none; /* Hide default menu */
+    display: none;
     flex-direction: column;
     position: absolute;
     top: 70px;
     right: 4%;
-    background-color: white;
-    box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(255, 107, 53, 0.2);
     padding: 20px;
-    border-radius: 8px;
+    border-radius: 12px;
     width: 200px;
     z-index: 10;
+    border: 1px solid rgba(255, 107, 53, 0.3);
   }
 
   /* When mobile menu is toggled 'on' */
@@ -153,9 +246,13 @@
   .navbar-menu li {
     font-size: 18px;
     padding: 10px 0;
+    color: #e0e0e0;
   }
 
-  /* Optional: Resize other elements for mobile */
+  .navbar-menu li:hover {
+    color: #ff6b35;
+  }
+
   .signin-btn {
     padding: 7px 15px;
     font-size: 14px;
@@ -175,5 +272,15 @@
   to { 
     opacity: 1; 
     transform: translateY(0); 
+  }
+}
+
+/* Pulse animation */
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
   }
 }
