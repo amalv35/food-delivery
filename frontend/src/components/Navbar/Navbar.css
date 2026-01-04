@@ -1,43 +1,22 @@
-/* --- Base Desktop Styles --- */
 .navbar {
-  padding: 20px 4%;
+  padding: 20px 8vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: var(--bg-card);
-   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  background: var(--bg-card-solid);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
   z-index: 100;
   border-bottom: 2px solid rgba(255, 107, 53, 0.1);
-}
-
-.navbar {
-  background: var(--bg-card-solid);
-}
-
-.navbar-menu {
-  color: var(--text-secondary);
-}
-
-.navbar-menu li:hover {
-  color: var(--text-primary);
-}
-
-.navbar-menu li.active {
-  color: var(--accent-primary);
-}
-
-.signin-btn {
-  background: transparent;
-  color: var(--text-primary);
-  border: 2px solid var(--accent-primary);
+  transition: padding 0.3s ease;
 }
 
 .navbar .logo {
   width: 140px;
   filter: brightness(1.2);
   transition: transform 0.3s ease;
+  flex-shrink: 0;
 }
 
 .navbar .logo:hover {
@@ -47,23 +26,26 @@
 .navbar-menu {
   display: flex;
   list-style: none;
-  gap: 20px;
-  color: var(--text-primary);
+  gap: 25px;
+  color: var(--text-secondary);
   font-size: 17px;
   cursor: pointer;
+  margin: 0;
+  padding: 0;
 }
 
 .navbar-menu li {
   position: relative;
-  padding-bottom: 2px;
+  padding: 8px 0;
   transition: color 0.3s ease;
+  white-space: nowrap;
 }
 
 /* The "Progress Bar" Underline with Orange */
 .navbar-menu li::after {
   content: "";
   position: absolute;
-  bottom: -2px;
+  bottom: 0;
   left: 0;
   width: 0;
   height: 3px;
@@ -75,7 +57,7 @@
 
 /* Flow the bar to 100% width on Hover */
 .navbar-menu li:hover {
-  color: #ffffff;
+  color: var(--text-primary);
 }
 
 .navbar-menu li:hover::after {
@@ -96,11 +78,13 @@
   display: flex;
   align-items: center;
   gap: 25px;
+  flex-shrink: 0;
 }
 
 .navbar-cart-container {
   position: relative;
   transition: transform 0.3s ease;
+  cursor: pointer;
 }
 
 .navbar-cart-container:hover {
@@ -119,25 +103,19 @@
   animation: pulse 2s infinite;
 }
 
-.search-icon-img {
-  filter: brightness(0) invert(1);
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-
-.search-icon-img:hover {
-  filter: brightness(0) invert(1) drop-shadow(0 0 5px rgba(255, 107, 53, 0.8));
-  transform: scale(1.1);
-}
-
+.search-icon-img,
 .basket-icon-img {
+  width: 24px;
+  height: 24px;
   filter: brightness(0) invert(1);
   transition: all 0.3s ease;
   cursor: pointer;
 }
 
+.search-icon-img:hover,
 .basket-icon-img:hover {
   filter: brightness(0) invert(1) drop-shadow(0 0 5px rgba(255, 107, 53, 0.8));
+  transform: scale(1.1);
 }
 
 .signin-btn {
@@ -145,13 +123,14 @@
   font-size: 15px;
   color: var(--text-primary);
   border: 2px solid #ff6b35;
-  padding: 8px 25px;
+  padding: 10px 25px;
   border-radius: 50px;
   cursor: pointer;
   transition: all 0.3s ease;
   font-weight: 500;
   position: relative;
   overflow: hidden;
+  white-space: nowrap;
 }
 
 .signin-btn::before {
@@ -183,12 +162,14 @@
   cursor: pointer;
   flex-direction: column;
   gap: 5px;
+  padding: 8px;
+  z-index: 101;
 }
 
 .hamburger .line {
   width: 25px;
   height: 3px;
-  background-color: #ffffff;
+  background-color: var(--text-primary);
   transition: 0.3s;
   border-radius: 2px;
 }
@@ -197,85 +178,299 @@
   background: linear-gradient(90deg, #ff6b35, #ff8c42);
 }
 
-/* --- Responsive Media Queries --- */
+/* Hamburger animation when active */
+.hamburger.active .line:nth-child(1) {
+  transform: rotate(45deg) translate(7px, 7px);
+}
 
-/* For Tablets and Small Laptops */
-@media (max-width: 1050px) {
-  .navbar .logo { 
-    width: 120px; 
+.hamburger.active .line:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active .line:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* ========================================
+   RESPONSIVE DESIGN - IMPROVED
+======================================== */
+
+/* Large Tablets / Small Laptops (1024px and below) */
+@media (max-width: 1024px) {
+  .navbar {
+    padding: 18px 6vw;
   }
-  
-  .navbar-menu { 
-    gap: 15px; 
-    font-size: 16px; 
+
+  .navbar .logo {
+    width: 130px;
   }
-  
-  .navbar-right { 
-    gap: 20px; 
+
+  .navbar-menu {
+    gap: 20px;
+    font-size: 16px;
+  }
+
+  .navbar-right {
+    gap: 20px;
+  }
+
+  .signin-btn {
+    padding: 8px 20px;
+    font-size: 14px;
   }
 }
 
-/* For Mobile Devices (Phones) */
-@media (max-width: 750px) {
+/* Tablets (900px and below) */
+@media (max-width: 900px) {
+  .navbar {
+    padding: 16px 5vw;
+  }
+
+  .navbar .logo {
+    width: 120px;
+  }
+
+  .navbar-menu {
+    gap: 18px;
+    font-size: 15px;
+  }
+
+  .navbar-right {
+    gap: 18px;
+  }
+
+  .search-icon-img,
+  .basket-icon-img {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+/* Small Tablets / Large Phones (768px and below) */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 15px 20px;
+  }
+
   .hamburger {
     display: flex;
+  }
+
+  .navbar .logo {
+    width: 110px;
   }
 
   .navbar-menu {
     display: none;
     flex-direction: column;
-    position: absolute;
-    top: 70px;
-    right: 4%;
-    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-    box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.3),
-                0 0 0 1px rgba(255, 107, 53, 0.2);
-    padding: 20px;
-    border-radius: 12px;
-    width: 200px;
-    z-index: 10;
-    border: 1px solid rgba(255, 107, 53, 0.3);
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 280px;
+    background: var(--bg-gradient);
+    backdrop-filter: blur(10px);
+    box-shadow: -5px 0 25px rgba(0, 0, 0, 0.3);
+    padding: 80px 30px 30px;
+    gap: 0;
+    z-index: 99;
+    overflow-y: auto;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
   }
 
   /* When mobile menu is toggled 'on' */
   .navbar-menu.mobile-visible {
     display: flex;
-    animation: slideDown 0.3s ease;
+    transform: translateX(0);
   }
 
   .navbar-menu li {
     font-size: 18px;
-    padding: 10px 0;
-    color: #e0e0e0;
+    padding: 18px 0;
+    color: var(--text-primary);
+    border-bottom: 1px solid rgba(255, 107, 53, 0.1);
+    width: 100%;
+  }
+
+  .navbar-menu li:last-child {
+    border-bottom: none;
+  }
+
+  .navbar-menu li::after {
+    display: none;
   }
 
   .navbar-menu li:hover {
     color: #ff6b35;
+    padding-left: 10px;
+  }
+
+  .navbar-menu li.active {
+    color: #ff6b35;
+    border-left: 3px solid #ff6b35;
+    padding-left: 10px;
+  }
+
+  .navbar-right {
+    gap: 15px;
   }
 
   .signin-btn {
-    padding: 7px 15px;
-    font-size: 14px;
+    padding: 7px 18px;
+    font-size: 13px;
   }
-  
-  .search-icon-img {
+
+  .search-icon-img,
+  .basket-icon-img {
     width: 20px;
+    height: 20px;
+  }
+
+  /* Mobile menu overlay */
+  .navbar-menu.mobile-visible::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+    animation: fadeIn 0.3s ease;
   }
 }
 
-/* Smooth slide-down animation for mobile menu */
+/* Mobile Phones (600px and below) */
+@media (max-width: 600px) {
+  .navbar {
+    padding: 12px 15px;
+  }
+
+  .navbar .logo {
+    width: 100px;
+  }
+
+  .navbar-menu {
+    width: 260px;
+    padding: 70px 25px 25px;
+  }
+
+  .navbar-menu li {
+    font-size: 17px;
+    padding: 16px 0;
+  }
+
+  .navbar-right {
+    gap: 12px;
+  }
+
+  .signin-btn {
+    padding: 6px 15px;
+    font-size: 12px;
+  }
+
+  .search-icon-img,
+  .basket-icon-img {
+    width: 18px;
+    height: 18px;
+  }
+
+  .navbar-right .dot {
+    min-width: 7px;
+    min-height: 7px;
+    top: -4px;
+    right: -4px;
+  }
+}
+
+/* Small Mobile (480px and below) */
+@media (max-width: 480px) {
+  .navbar {
+    padding: 12px 12px;
+  }
+
+  .navbar .logo {
+    width: 90px;
+  }
+
+  .navbar-menu {
+    width: 240px;
+    padding: 60px 20px 20px;
+  }
+
+  .navbar-menu li {
+    font-size: 16px;
+    padding: 14px 0;
+  }
+
+  .navbar-right {
+    gap: 10px;
+  }
+
+  .signin-btn {
+    padding: 6px 12px;
+    font-size: 11px;
+  }
+
+  .hamburger .line {
+    width: 22px;
+    height: 2.5px;
+  }
+}
+
+/* Extra Small Devices (360px and below) */
+@media (max-width: 360px) {
+  .navbar {
+    padding: 10px 10px;
+  }
+
+  .navbar .logo {
+    width: 80px;
+  }
+
+  .navbar-menu {
+    width: 220px;
+  }
+
+  .navbar-menu li {
+    font-size: 15px;
+    padding: 12px 0;
+  }
+
+  .signin-btn {
+    padding: 5px 10px;
+    font-size: 10px;
+  }
+
+  .search-icon-img,
+  .basket-icon-img {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* Animations */
 @keyframes slideDown {
-  from { 
-    opacity: 0; 
-    transform: translateY(-10px); 
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
   }
-  to { 
-    opacity: 1; 
-    transform: translateY(0); 
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-/* Pulse animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 @keyframes pulse {
   0%, 100% {
     transform: scale(1);
