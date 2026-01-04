@@ -3,7 +3,7 @@ import "./navbar.css";
 import { assets } from "../../assets/assets";
 import ThemeToggle from "../Themes/theme"
 
-const Navbar = () => {
+const Navbar = ({setShowLoginPopup}) => {
   const [menu, setMenu] = useState("home");
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
@@ -71,7 +71,8 @@ const Navbar = () => {
           <div className="dot"></div>
         </div>
           <ThemeToggle />
-        <button className="signin-btn">Sign in</button>
+        <button className="signin-btn"
+        onClick={() => setShowLoginPopup(true)}>Sign in</button>
 
         {/* Hamburger Menu Icon (Visible only on mobile) */}
         <div className="hamburger" onClick={() => setShowMobileMenu(!showMobileMenu)}>
