@@ -3,31 +3,33 @@ import "./foodItem.css";
 import { assets } from "../../assets/assets";
 import { StoreContext } from "../../context/StoreContext";
 
-const FoodItem = ({ id, name, price, description, image }) => {
+const FoodItem = ({ _id, name, price, description, image }) => {
   
   const {cartItems , addToCart, removeFromCart} = useContext(StoreContext);
- 
-  return (
+   console.log(cartItems , "cart items in food item");
+   console.log(addToCart , "add to cart function in food item");
+  console.log("Item Name:", name, "ID:", _id); 
+   return (
     <div className="food-item">
       <div className="food-item-img-container">
         <img className="food-item-image" src={image} alt={name} />
-        {!cartItems[id] ? (
+        {!cartItems[_id] ? (
           <img 
             className="add-food-item" 
-            onClick={() => addToCart(id)} 
+            onClick={() => addToCart(_id)} 
             src={assets.add_icon_white} 
             alt="Add to cart"
           />
         ) : (
           <div className="food-item-counter">
             <img 
-              onClick={() => removeFromCart(id)} 
+              onClick={() => removeFromCart(_id)} 
               src={assets.remove_icon_red} 
               alt="Remove" 
             />
-            <p>{cartItems[id]}</p>
+            <p>{cartItems[_id]}</p>
             <img 
-              onClick={() => addToCart(id)} 
+              onClick={() => addToCart(_id)} 
               src={assets.add_icon_green} 
               alt="Add more" 
             />

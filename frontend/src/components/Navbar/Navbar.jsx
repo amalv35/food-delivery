@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./navbar.css";
 import { assets } from "../../assets/assets";
 import ThemeToggle from "../Themes/theme"
+import { Link } from "react-router-dom";
 
 const Navbar = ({setShowLoginPopup}) => {
   const [menu, setMenu] = useState("home");
@@ -67,7 +68,7 @@ const Navbar = ({setShowLoginPopup}) => {
   <path d="m21 21-4.35-4.35" />
 </svg>
         <div className="navbar-cart-container">
-          <img src={assets.basket_icon} alt="cart" />
+       <Link to='/cart'>   <img src={assets.basket_icon} alt="cart" /></Link>
           <div className="dot"></div>
         </div>
           <ThemeToggle />
