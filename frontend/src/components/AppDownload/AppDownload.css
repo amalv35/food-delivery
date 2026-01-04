@@ -1,0 +1,47 @@
+.app-download {
+  margin: 100px auto 0 auto;
+  max-width: 1200px; /* Adjust based on your design */
+  padding: 0 20px; /* Optional: adds padding on sides for mobile */
+}
+
+.app-download p {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+
+.app-download-platforms {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.app-download-platforms img {
+  width: 150px;
+  height: auto;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.app-download-platforms img:hover {
+  transform: scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .app-download {
+    margin-top: 60px;
+  }
+  
+  .app-download p {
+    font-size: 1.5rem;
+  }
+  
+  .app-download-platforms img {
+    width: 120px;
+  }
+}
