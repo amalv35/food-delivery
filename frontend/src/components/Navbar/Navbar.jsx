@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./navbar.css";
 import { assets } from "../../assets/assets";
 import ThemeToggle from "../Themes/theme"
 import { Link } from "react-router-dom";
+import { StoreContext } from "../../context/StoreContext";
 
 const Navbar = ({setShowLoginPopup}) => {
   const [menu, setMenu] = useState("home");
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
 
+  const {getTotalCartAmount} = useContext(StoreContext)
   return (
     <nav className="navbar">
       <img src={assets.logo} alt="logo" className="logo" />
@@ -69,7 +71,7 @@ const Navbar = ({setShowLoginPopup}) => {
 </svg>
         <div className="navbar-cart-container">
        <Link to='/cart'>   <img src={assets.basket_icon} alt="cart" /></Link>
-          <div className="dot"></div>
+          <div className={getTotalCartAmount()===0?"":"dot"}></div>
         </div>
           <ThemeToggle />
         <button className="signin-btn"
