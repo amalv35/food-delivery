@@ -4,8 +4,11 @@ import { StoreContext } from '../../context/storecontext'
 import { useNavigate } from 'react-router-dom'
 
 const Cart = () => {
-    const { food_list, cartItems, removeFromCart, getTotalCartAmount } = useContext(StoreContext)
+    const { food_list, cartItems, addToCart, removeFromCart, getTotalCartAmount, url } = useContext(StoreContext)
     const navigate = useNavigate();
+
+    const hasItems = food_list.some((item) => cartItems[item._id] > 0);
+
     return (
         <div className="cart">
             <div className="cart-items">
@@ -19,17 +22,31 @@ const Cart = () => {
                 </div>
                 <br />
                 <hr />
+
+                {!hasItems && (
+                    <p style={{ textAlign: "center", margin: "20px 0" }}>
+                        Your cart is empty.
+                    </p>
+                )}
+
                 {food_list.map((item, index) => {
-                    if (cartItems[item._id] > 0) {  
+                    if (cartItems[item._id] > 0) {
                         return (
                             <div key={index}>
                                 <div className="cart-items-title cart-items-item">
-                                    <img src={item.image} alt={item.name} />
+                                    <img src={`${url}/images/${item.image}`} alt={item.name} />
                                     <p>{item.name}</p>
                                     <p>${item.price}</p>
-                                    <p>{cartItems[item._id]}</p>
+
+                                    {/* quantity counter with +/- */}
+                                    <div className="cart-quantity-control">
+                                        <button onClick={() => removeFromCart(item._id)}>−</button>
+                                        <span>{cartItems[item._id]}</span>
+                                        <button onClick={() => addToCart(item._id)}>+</button>
+                                    </div>
+
                                     <p>${item.price * cartItems[item._id]}</p>
-                                    <p onClick={() => removeFromCart(item._id)} className="cross">x</p>
+                                    <p onClick={() => removeFromCart(item._id, true)} className="cross">x</p>
                                 </div>
                                 <hr />
                             </div>
@@ -58,7 +75,9 @@ const Cart = () => {
                             <b>${getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 2}</b>
                         </div>
                     </div>
-                    <button onClick={()=> navigate('/order') }>PROCEED TO CHECKOUT</button>
+                    <button onClick={() => navigate('/order')} disabled={!hasItems}>
+                        PROCEED TO CHECKOUT
+                    </button>
                 </div>
 
                 <div className="cart-promocode">
