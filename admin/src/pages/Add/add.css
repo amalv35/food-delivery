@@ -1,0 +1,237 @@
+.add {
+    width: 70%;
+    margin-left: 25px; 
+    margin-top: 50px;
+    color: #6d6d6d;
+    font-size: 16px;
+}
+
+.add form {
+    gap: 20px;
+}
+
+/* --- Image Upload Section --- */
+.add-img-upload {
+    gap: 10px;
+}
+
+.add-img-upload label {
+    cursor: pointer;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #2a2a2a;
+    border-radius: 15px;
+    border: 2px dashed #6d6d6d;
+    transition: 0.3s;
+}
+
+.add-img-upload label:hover {
+    border-color: #fcfcfc;
+    background-color: #333;
+}
+
+.add-img-upload label svg {
+    font-size: 50px;
+    color: #fcfcfc;
+    opacity: 0.5;
+}
+
+.add-img-upload input[type="file"] {
+    display: none; 
+}
+.add-img-upload label img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    border-radius: 15px; 
+}
+/* --- Existing Label Styling --- */
+.add-img-upload label {
+    cursor: pointer;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #2a2a2a;
+    border-radius: 15px;
+    border: 2px dashed #6d6d6d;
+    transition: 0.3s;
+    overflow: hidden; 
+    position: relative; 
+}
+
+/* --- Wrapper for Image + Button --- */
+.image-preview-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative; /* Context for the absolute button */
+}
+
+/* --- The Image Itself --- */
+.image-preview-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 13px; /* Slightly less than label radius */
+}
+
+/* --- The Close Button --- */
+.remove-img-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent dark bg */
+    border: none;
+    border-radius: 50%;
+    color: #fff;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.2s;
+    z-index: 10;
+}
+
+.remove-img-btn:hover {
+    background-color: #ff4d4d; /* Red on hover */
+    transform: scale(1.1);
+}
+/* --- Input Fields --- */
+.add-form-inputs, 
+.add-product-description, 
+.add-category-size, 
+.add-price {
+    width: max(40%, 280px); 
+}
+
+.add p {
+    margin-bottom: 5px;
+    color: #fcfcfc; 
+}
+
+.add input, 
+.add textarea, 
+.add select {
+    padding: 10px;
+    background-color: transparent;
+    border: 1px solid #6d6d6d;
+    border-radius: 4px;
+    color: #fcfcfc;
+    outline: none;
+    font-size: 14px;
+    width: 100%; 
+}
+
+.add input:focus, 
+.add textarea:focus, 
+.add select:focus {
+    border-color: #fcfcfc;
+}
+
+/* --- Dropdown Options (Lighter Dark Theme) --- */
+.add select option {
+    background-color: #2d2d2d; 
+    color: #fcfcfc;
+}
+
+
+/* --- Submit Button --- */
+.add-btn {
+    max-width: 120px;
+    border: none;
+    padding: 10px;
+    background-color: #fcfcfc;
+    color: #000;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 15px;
+    border-radius: 4px;
+    margin-top: 20px;
+    transition: 0.3s;
+}
+
+.add-btn:hover {
+    background-color: #e2e2e2;
+    transform: scale(1.05);
+}
+
+
+/*RESPONSIVE BREAKPOINTS*/
+
+
+/* Tablet View (Max width: 900px) */
+@media (max-width: 900px) {
+    .add {
+        width: 80%; 
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+/* Standard Mobile View (Max width: 600px) */
+@media (max-width: 600px) {
+    .add {
+        width: 100%;
+        margin-left: 0; 
+        margin-top: 30px;
+        padding: 0 20px;
+    }
+
+    .add-form-inputs, 
+    .add-product-description, 
+    .add-category-size, 
+    .add-price {
+        width: 100%; 
+    }
+
+    .add-btn {
+        max-width: 100%;
+        padding: 12px;
+    }
+}
+
+/* Small Mobile View (Max width: 500px) */
+@media (max-width: 500px) {
+    .add {
+        margin-top: 20px;
+        padding: 0 15px; 
+    }
+    
+    .add-img-upload label {
+        width: 100px; 
+        height: 100px;
+    }
+    
+    .add-img-upload label svg {
+        font-size: 40px;
+    }
+}
+
+/* Very Small Devices (Max width: 320px) - e.g., iPhone SE, Galaxy Fold outer screen */
+@media (max-width: 320px) {
+    .add {
+        padding: 0 10px; 
+        }
+
+    .add p {
+        font-size: 14px; 
+        }
+
+    .add input, 
+    .add textarea, 
+    .add select {
+    font-size: 13px; 
+    padding: 8px;
+    }
+
+    .add-btn {
+        font-size: 14px;
+        padding: 10px;
+    }
+}

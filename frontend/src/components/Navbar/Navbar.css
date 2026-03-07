@@ -1,94 +1,159 @@
-/* --- Base Desktop Styles --- */
 .navbar {
-  padding: 20px 4%; /* Responsive horizontal padding */
+  padding: 20px 8vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background: var(--bg-card-solid);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 2px solid rgba(255, 107, 53, 0.1);
+  transition: padding 0.3s ease;
 }
 
 .navbar .logo {
   width: 140px;
+  filter: brightness(1.2);
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.navbar .logo:hover {
+  transform: scale(1.05);
 }
 
 .navbar-menu {
   display: flex;
   list-style: none;
-  gap: 20px;
-  color: #49557e;
+  gap: 25px;
+  color: var(--text-secondary);
   font-size: 17px;
   cursor: pointer;
+  margin: 0;
+  padding: 0;
 }
 
 .navbar-menu li {
-  position: relative; /* Required for the absolute positioning of the underline */
-  padding-bottom: 2px;
+  position: relative;
+  padding: 8px 0;
+  transition: color 0.3s ease;
+  white-space: nowrap;
 }
 
-/* The "Progress Bar" Underline */
+/* The "Progress Bar" Underline with Orange */
 .navbar-menu li::after {
   content: "";
   position: absolute;
-  bottom: -2px; /* Position it at the bottom */
+  bottom: 0;
   left: 0;
-  width: 0; /* Start with 0 width */
+  width: 0;
   height: 3px;
-  background-color: tomato; /* Progress bar color */
-  transition: width 0.4s ease-in-out; /* This creates the "flow" effect */
+  background: linear-gradient(90deg, #ff6b35, #ff8c42);
+  transition: width 0.4s ease-in-out;
   border-radius: 10px;
+  box-shadow: 0 0 8px rgba(255, 107, 53, 0.4);
 }
 
 /* Flow the bar to 100% width on Hover */
+.navbar-menu li:hover {
+  color: var(--text-primary);
+}
+
 .navbar-menu li:hover::after {
   width: 100%;
 }
 
 /* Keep the bar at 100% width when Active */
-.navbar-menu li.active::after {
-  width: 100%;
-}
-
-/* Optional: change text color when active to match the bar */
 .navbar-menu li.active {
-  color: #212121;
+  color: #ff6b35;
   font-weight: 500;
 }
 
-/* REMOVED CONFLICTING BORDER-BOTTOM RULE */
-/* The animated ::after pseudo-element handles the underline */
+.navbar-menu li.active::after {
+  width: 100%;
+}
 
 .navbar-right {
   display: flex;
   align-items: center;
   gap: 25px;
+  flex-shrink: 0;
 }
 
 .navbar-cart-container {
   position: relative;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.navbar-cart-container:hover {
+  transform: scale(1.1);
 }
 
 .navbar-right .dot {
   position: absolute;
   min-width: 8px;
   min-height: 8px;
-  background-color: tomato;
+  background: linear-gradient(135deg, #ff6b35, #ff8c42);
   border-radius: 50%;
   top: -5px;
   right: -5px;
+  box-shadow: 0 0 8px rgba(255, 107, 53, 0.6);
+  animation: pulse 2s infinite;
+}
+
+.search-icon-img,
+.basket-icon-img {
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) invert(1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.search-icon-img:hover,
+.basket-icon-img:hover {
+  filter: brightness(0) invert(1) drop-shadow(0 0 5px rgba(255, 107, 53, 0.8));
+  transform: scale(1.1);
 }
 
 .signin-btn {
   background: transparent;
   font-size: 15px;
-  color: #49557e;
-  border: 1px solid tomato;
-  padding: 8px 25px;
+  color: var(--text-primary);
+  border: 2px solid #ff6b35;
+  padding: 10px 25px;
   border-radius: 50px;
   cursor: pointer;
-  transition: 0.3s;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.signin-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+  transition: left 0.4s ease;
+  z-index: -1;
+}
+
+.signin-btn:hover::before {
+  left: 0;
 }
 
 .signin-btn:hover {
-  background-color: #fff4f2;
+  color: #ffffff;
+  border-color: #ff8c42;
+  box-shadow: 0 5px 20px rgba(255, 107, 53, 0.4);
+  transform: translateY(-2px);
 }
 
 /* Hide Hamburger by default */
@@ -97,83 +162,438 @@
   cursor: pointer;
   flex-direction: column;
   gap: 5px;
+  padding: 8px;
+  z-index: 101;
 }
 
 .hamburger .line {
   width: 25px;
   height: 3px;
-  background-color: #49557e;
+  background-color: var(--text-primary);
   transition: 0.3s;
+  border-radius: 2px;
 }
 
-/* --- Responsive Media Queries --- */
-
-/* For Tablets and Small Laptops */
-@media (max-width: 1050px) {
-  .navbar .logo { 
-    width: 120px; 
-  }
-  
-  .navbar-menu { 
-    gap: 15px; 
-    font-size: 16px; 
-  }
-  
-  .navbar-right { 
-    gap: 20px; 
-  }
+.hamburger:hover .line {
+  background: linear-gradient(90deg, #ff6b35, #ff8c42);
 }
 
-/* For Mobile Devices (Phones) */
-@media (max-width: 750px) {
-  .hamburger {
-    display: flex; /* Show hamburger icon */
+/* Hamburger animation when active */
+.hamburger.active .line:nth-child(1) {
+  transform: rotate(45deg) translate(7px, 7px);
+}
+
+.hamburger.active .line:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active .line:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* ========================================
+   RESPONSIVE DESIGN - IMPROVED
+======================================== */
+
+/* Large Tablets / Small Laptops (1024px and below) */
+@media (max-width: 1024px) {
+  .navbar {
+    padding: 18px 6vw;
+  }
+
+  .navbar .logo {
+    width: 130px;
   }
 
   .navbar-menu {
-    display: none; /* Hide default menu */
+    gap: 20px;
+    font-size: 16px;
+  }
+
+  .navbar-right {
+    gap: 20px;
+  }
+
+  .signin-btn {
+    padding: 8px 20px;
+    font-size: 14px;
+  }
+}
+
+/* Tablets (900px and below) */
+@media (max-width: 900px) {
+  .navbar {
+    padding: 16px 5vw;
+  }
+
+  .navbar .logo {
+    width: 120px;
+  }
+
+  .navbar-menu {
+    gap: 18px;
+    font-size: 15px;
+  }
+
+  .navbar-right {
+    gap: 18px;
+  }
+
+  .search-icon-img,
+  .basket-icon-img {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+/* Small Tablets / Large Phones (768px and below) */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 15px 20px;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .navbar .logo {
+    width: 110px;
+  }
+
+  .navbar-menu {
+    display: none;
     flex-direction: column;
-    position: absolute;
-    top: 70px;
-    right: 4%;
-    background-color: white;
-    box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
-    padding: 20px;
-    border-radius: 8px;
-    width: 200px;
-    z-index: 10;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 280px;
+    background: var(--bg-gradient);
+    backdrop-filter: blur(10px);
+    box-shadow: -5px 0 25px rgba(0, 0, 0, 0.3);
+    padding: 80px 30px 30px;
+    gap: 0;
+    z-index: 99;
+    overflow-y: auto;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
   }
 
   /* When mobile menu is toggled 'on' */
   .navbar-menu.mobile-visible {
     display: flex;
-    animation: slideDown 0.3s ease;
+    transform: translateX(0);
   }
 
   .navbar-menu li {
     font-size: 18px;
-    padding: 10px 0;
+    padding: 18px 0;
+    color: var(--text-primary);
+    border-bottom: 1px solid rgba(255, 107, 53, 0.1);
+    width: 100%;
   }
 
-  /* Optional: Resize other elements for mobile */
-  .signin-btn {
-    padding: 7px 15px;
-    font-size: 14px;
+  .navbar-menu li:last-child {
+    border-bottom: none;
   }
-  
-  .search-icon-img {
+
+  .navbar-menu li::after {
+    display: none;
+  }
+
+  .navbar-menu li:hover {
+    color: #ff6b35;
+    padding-left: 10px;
+  }
+
+  .navbar-menu li.active {
+    color: #ff6b35;
+    border-left: 3px solid #ff6b35;
+    padding-left: 10px;
+  }
+
+  .navbar-right {
+    gap: 15px;
+  }
+
+  .signin-btn {
+    padding: 7px 18px;
+    font-size: 13px;
+  }
+
+  .search-icon-img,
+  .basket-icon-img {
     width: 20px;
+    height: 20px;
+  }
+
+  /* Mobile menu overlay */
+  .navbar-menu.mobile-visible::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+    animation: fadeIn 0.3s ease;
   }
 }
 
-/* Smooth slide-down animation for mobile menu */
-@keyframes slideDown {
-  from { 
-    opacity: 0; 
-    transform: translateY(-10px); 
+/* Mobile Phones (600px and below) */
+@media (max-width: 600px) {
+  .navbar {
+    padding: 12px 15px;
   }
-  to { 
-    opacity: 1; 
-    transform: translateY(0); 
+
+  .navbar .logo {
+    width: 100px;
+  }
+
+  .navbar-menu {
+    width: 260px;
+    padding: 70px 25px 25px;
+  }
+
+  .navbar-menu li {
+    font-size: 17px;
+    padding: 16px 0;
+  }
+
+  .navbar-right {
+    gap: 12px;
+  }
+
+  .signin-btn {
+    padding: 6px 15px;
+    font-size: 12px;
+  }
+
+  .search-icon-img,
+  .basket-icon-img {
+    width: 18px;
+    height: 18px;
+  }
+
+  .navbar-right .dot {
+    min-width: 7px;
+    min-height: 7px;
+    top: -4px;
+    right: -4px;
+  }
+}
+
+/* Small Mobile (480px and below) */
+@media (max-width: 480px) {
+  .navbar {
+    padding: 12px 12px;
+  }
+
+  .navbar .logo {
+    width: 90px;
+  }
+
+  .navbar-menu {
+    width: 240px;
+    padding: 60px 20px 20px;
+  }
+
+  .navbar-menu li {
+    font-size: 16px;
+    padding: 14px 0;
+  }
+
+  .navbar-right {
+    gap: 10px;
+  }
+
+  .signin-btn {
+    padding: 6px 12px;
+    font-size: 11px;
+  }
+
+  .hamburger .line {
+    width: 22px;
+    height: 2.5px;
+  }
+}
+
+/* Extra Small Devices (360px and below) */
+@media (max-width: 360px) {
+  .navbar {
+    padding: 10px 10px;
+  }
+
+  .navbar .logo {
+    width: 80px;
+  }
+
+  .navbar-menu {
+    width: 220px;
+  }
+
+  .navbar-menu li {
+    font-size: 15px;
+    padding: 12px 0;
+  }
+
+  .signin-btn {
+    padding: 5px 10px;
+    font-size: 10px;
+  }
+
+  .search-icon-img,
+  .basket-icon-img {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* Animations */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+/* ========================================
+   PROFILE DROPDOWN - AESTHETIC & RESPONSIVE
+======================================== */
+
+.navbar-profile {
+  position: relative;
+  cursor: pointer;
+  padding: 5px; /* Increases hover area */
+}
+
+/* The Dropdown Card */
+.nav-profile-dropdown {
+  position: absolute;
+  right: 0;
+  top: 130%; /* Pushes it slightly down from the icon */
+  z-index: 1000;
+  background: #ffffff;
+  padding: 10px;
+  border-radius: 12px;
+  width: 160px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); /* Soft modern shadow */
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  
+  /* Flex Layout */
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  list-style: none;
+  
+  /* Animation Start State */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-15px);
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* The "Speech Bubble" Arrow pointing up */
+.nav-profile-dropdown::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  right: 12px;
+  width: 12px;
+  height: 12px;
+  background: #ffffff;
+  transform: rotate(45deg);
+  border-left: 1px solid rgba(0, 0, 0, 0.04);
+  border-top: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+/* Hover State - Triggers Animation */
+.navbar-profile:hover .nav-profile-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Dropdown Items */
+.nav-profile-dropdown li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 15px;
+  border-radius: 8px;
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+/* Dropdown Icons */
+.nav-profile-dropdown li img {
+  width: 18px;
+  opacity: 0.7;
+  transition: transform 0.2s ease;
+}
+
+/* Hover Effects on Items */
+.nav-profile-dropdown li:hover {
+  background-color: #fff4f2; /* Light orange tint */
+  color: #ff6b35; /* Orange text */
+}
+
+.nav-profile-dropdown li:hover img {
+  opacity: 1;
+  transform: scale(1.1); /* Subtle zoom on icon */
+  filter: brightness(0) saturate(100%) invert(56%) sepia(61%) saturate(2375%) hue-rotate(334deg) brightness(99%) contrast(106%); /* Turns icon orange */
+}
+
+/* Separator Line */
+.nav-profile-dropdown hr {
+  margin: 4px 0;
+  border: none;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* ========================================
+   DROPDOWN RESPONSIVENESS
+======================================== */
+
+@media (max-width: 768px) {
+  .nav-profile-dropdown {
+    width: 180px; /* Slightly wider for touch targets */
+    right: -10px; /* Shift slightly to ensure it doesn't bleed off screen */
+    top: 140%;
+  }
+
+  .nav-profile-dropdown::before {
+    right: 22px; /* Adjust arrow position */
+  }
+
+  .nav-profile-dropdown li {
+    padding: 12px 15px; /* Larger tap area for mobile */
+    font-size: 15px;
   }
 }

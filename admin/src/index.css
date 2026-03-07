@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Outfit', sans-serif;
+    color: #fcfcfc;
+}
+
+
+body {
+    min-height: 100vh;
+    background-color: #fcfcfc;
+
+}
+
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+hr{
+    border: none;
+    height: 1px;
+    background-color: #a9a9a9;
+}
+
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #0a0a0a;
+}
+
+
+.flex-col {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.app-container hr {
+  margin: 0;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.main-content {
+  display: flex;
+  flex: 1;
+  margin-left: 250px; /* Same as sidebar width */
+  padding: 2rem;
+  background: #0a0a0a;
+  min-height: calc(100vh - 72px); /* Subtract navbar height */
+}
+
+.main-content > * {
+  flex: 1; /* Makes the routed component take full width */
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .main-content {
+    margin-left: 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 70px;
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-content {
+    margin-left: 60px;
+    padding: 1rem;
+  }
+}

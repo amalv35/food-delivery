@@ -1,0 +1,82 @@
+.list {
+  width: 70%;
+  margin-left: max(5vw, 25px);
+  margin-top: 50px;
+  color: white; /* Matches your screenshot text color */
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.list > p {
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: whitesmoke;
+}
+
+.list-table {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.list-table-format {
+  display: grid;
+  /* CHANGED: Reduced first column to 0.5fr to pull name closer */
+  grid-template-columns: 0.5fr 2fr 1fr 1fr 0.5fr;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 15px;
+  border: 1px solid #cacaca;
+  font-size: 14px;
+  /* ADDED: Centers text horizontally in all cells */
+  text-align: center; 
+}
+
+/* Header styling */
+.list-table-format.title {
+  background-color: #aaaaaa22; /* Transparent gray from screenshot */
+  font-weight: bold;
+  border: none;
+  border-bottom: 1px solid #cacaca;
+  color: #fff;
+}
+
+/* Image styling */
+.list-table-format img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 4px;
+  /* ADDED: Ensures image stays centered in its small column */
+  margin: auto; 
+  display: block;
+}
+
+/* The 'x' delete action styling */
+.list-table-format p:last-child {
+  cursor: pointer;
+  color: #ff4c4c;
+  font-weight: bold;
+  font-size: 1.1rem;
+  transition: 0.2s;
+}
+
+.list-table-format p:last-child:hover {
+  color: #d90000;
+  transform: scale(1.2);
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+  .list-table-format {
+    /* Adjusted for mobile */
+    grid-template-columns: 1fr 3fr 1fr;
+    gap: 10px;
+  }
+  
+  .list-table-format.title > b:nth-child(3),
+  .list-table-format > p:nth-child(3) {
+    display: none;
+  }
+}
