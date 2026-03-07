@@ -479,3 +479,121 @@
     transform: scale(1.15);
   }
 }
+
+/* ========================================
+   PROFILE DROPDOWN - AESTHETIC & RESPONSIVE
+======================================== */
+
+.navbar-profile {
+  position: relative;
+  cursor: pointer;
+  padding: 5px; /* Increases hover area */
+}
+
+/* The Dropdown Card */
+.nav-profile-dropdown {
+  position: absolute;
+  right: 0;
+  top: 130%; /* Pushes it slightly down from the icon */
+  z-index: 1000;
+  background: #ffffff;
+  padding: 10px;
+  border-radius: 12px;
+  width: 160px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); /* Soft modern shadow */
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  
+  /* Flex Layout */
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  list-style: none;
+  
+  /* Animation Start State */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-15px);
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* The "Speech Bubble" Arrow pointing up */
+.nav-profile-dropdown::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  right: 12px;
+  width: 12px;
+  height: 12px;
+  background: #ffffff;
+  transform: rotate(45deg);
+  border-left: 1px solid rgba(0, 0, 0, 0.04);
+  border-top: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+/* Hover State - Triggers Animation */
+.navbar-profile:hover .nav-profile-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Dropdown Items */
+.nav-profile-dropdown li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 15px;
+  border-radius: 8px;
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+/* Dropdown Icons */
+.nav-profile-dropdown li img {
+  width: 18px;
+  opacity: 0.7;
+  transition: transform 0.2s ease;
+}
+
+/* Hover Effects on Items */
+.nav-profile-dropdown li:hover {
+  background-color: #fff4f2; /* Light orange tint */
+  color: #ff6b35; /* Orange text */
+}
+
+.nav-profile-dropdown li:hover img {
+  opacity: 1;
+  transform: scale(1.1); /* Subtle zoom on icon */
+  filter: brightness(0) saturate(100%) invert(56%) sepia(61%) saturate(2375%) hue-rotate(334deg) brightness(99%) contrast(106%); /* Turns icon orange */
+}
+
+/* Separator Line */
+.nav-profile-dropdown hr {
+  margin: 4px 0;
+  border: none;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* ========================================
+   DROPDOWN RESPONSIVENESS
+======================================== */
+
+@media (max-width: 768px) {
+  .nav-profile-dropdown {
+    width: 180px; /* Slightly wider for touch targets */
+    right: -10px; /* Shift slightly to ensure it doesn't bleed off screen */
+    top: 140%;
+  }
+
+  .nav-profile-dropdown::before {
+    right: 22px; /* Adjust arrow position */
+  }
+
+  .nav-profile-dropdown li {
+    padding: 12px 15px; /* Larger tap area for mobile */
+    font-size: 15px;
+  }
+}

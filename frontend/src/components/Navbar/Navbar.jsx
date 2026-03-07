@@ -1,84 +1,105 @@
 import React, { useContext, useState } from "react";
 import "./navbar.css";
 import { assets } from "../../assets/assets";
-import ThemeToggle from "../Themes/theme"
-import { Link } from "react-router-dom";
+import ThemeToggle from "../Themes/theme";
+import { Link, useNavigate } from "react-router-dom"; 
 import { StoreContext } from "../../context/StoreContext";
 
-const Navbar = ({setShowLoginPopup}) => {
+const Navbar = ({ setShowLoginPopup }) => {
   const [menu, setMenu] = useState("home");
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
 
-  const {getTotalCartAmount} = useContext(StoreContext)
+  const { getTotalCartAmount, token, setToken } = useContext(StoreContext);
+  
+  const navigate = useNavigate(); 
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    setToken("");
+    navigate("/"); // Redirect to home page
+  };
+
   return (
     <nav className="navbar">
-      <img src={assets.logo} alt="logo" className="logo" />
+      <Link to='/'> <img src={assets.logo} alt="logo" className="logo" /> </Link>
 
-      {/* The navbar menu now toggles a class based on state */}
       <ul className={`navbar-menu ${showMobileMenu ? "mobile-visible" : ""}`}>
-        <li 
-          onClick={() => { setMenu("home"); setShowMobileMenu(false); }} 
+        <Link to='/'
+          onClick={() => { setMenu("home"); setShowMobileMenu(false); }}
           className={menu === "home" ? "active" : ""}
         >
           Home
-        </li>
-        <li 
-          onClick={() => { setMenu("menu"); setShowMobileMenu(false); }} 
+        </Link>
+        <a href='#explore-menu'
+          onClick={() => { setMenu("menu"); setShowMobileMenu(false); }}
           className={menu === "menu" ? "active" : ""}
         >
           Menu
-        </li>
-        <li 
-          onClick={() => { setMenu("mobile-app"); setShowMobileMenu(false); }} 
+        </a>
+        <a href='#app-download'
+          onClick={() => { setMenu("mobile-app"); setShowMobileMenu(false); }}
           className={menu === "mobile-app" ? "active" : ""}
         >
           Mobile-app
-        </li>
-        <li 
-          onClick={() => { setMenu("contact-us"); setShowMobileMenu(false); }} 
+        </a>
+        <a href='#footer'
+          onClick={() => { setMenu("contact-us"); setShowMobileMenu(false); }}
           className={menu === "contact-us" ? "active" : ""}
         >
           Contact us
-        </li>
+        </a>
       </ul>
 
       <div className="navbar-right">
-      {showSearch && (
-  <input 
-    type="text" 
-    placeholder="Search..." 
-    className="search-input"
-    autoFocus
-    onBlur={() => setShowSearch(false)}
-  />
-)}
+        {showSearch && (
+          <input
+            type="text"
+            placeholder="Search..."
+            className="search-input"
+            autoFocus
+            onBlur={() => setShowSearch(false)}
+          />
+        )}
 
-<svg
-  width={24}
-  height={24}
-  viewBox="0 0 24 24"
-  fill="none"
-  stroke="var(--text-primary)"
-  strokeWidth="2"
-  strokeLinecap="round"
-  strokeLinejoin="round"
-  className="search-icon-svg"
-  onClick={() => setShowSearch(!showSearch)}
->
-  <circle cx="11" cy="11" r="8" />
-  <path d="m21 21-4.35-4.35" />
-</svg>
-        <div className="navbar-cart-container">
-       <Link to='/cart'>   <img src={assets.basket_icon} alt="cart" /></Link>
-          <div className={getTotalCartAmount()===0?"":"dot"}></div>
+        <div className="search-icon" onClick={() => setShowSearch(!showSearch)}>
+          {/* Using an SVG or the asset search icon */}
+          <img src={assets.search_icon} alt="" />
         </div>
-          <ThemeToggle />
-        <button className="signin-btn"
-        onClick={() => setShowLoginPopup(true)}>Sign in</button>
 
-        {/* Hamburger Menu Icon (Visible only on mobile) */}
-        <div className="hamburger" onClick={() => setShowMobileMenu(!showMobileMenu)}>
+        <div className="navbar-search-icon">
+          <Link to='/cart'> <img src={assets.basket_icon} alt="cart" /> </Link>
+          <div className={getTotalCartAmount() === 0 ? "" : "dot"}></div>
+        </div>
+        
+        <ThemeToggle />
+
+        {!token ? (
+          <button className="signin-btn" onClick={() => setShowLoginPopup(true)}>
+            Sign in
+          </button>
+        ) : (
+          <div className="navbar-profile">
+            <img src={assets.profile_icon} alt="" />
+            <ul className="nav-profile-dropdown">
+              <li onClick={()=>navigate('/myorders')}>
+                <img src={assets.bag_icon} alt="" />
+                <p>Orders</p>
+              </li>
+              <hr />
+              <li onClick={logout}>
+                <img src={assets.logout_icon} alt="" />
+                <p>Logout</p>
+              </li>
+            </ul>
+          </div>
+        )}
+
+        {/* Hamburger Menu Icon */}
+        <div
+          className="hamburger"
+          onClick={() => setShowMobileMenu(!showMobileMenu)}
+        >
           <div className="line"></div>
           <div className="line"></div>
           <div className="line"></div>
