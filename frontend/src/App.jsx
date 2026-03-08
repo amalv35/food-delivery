@@ -11,6 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Verify from "./pages/Verify/Verify";
 import MyOrders from "../pages/MyOrders/MyOrders.";
 import AuthSuccess from "./Auth/AuthSuccess";
+import ChatBot from "./components/ChatBot/ChatBot";
 
 const App = () => {
   const [showLoginPopup, setShowLoginPopup] = useState(false);
@@ -38,6 +39,7 @@ const App = () => {
         </Routes>
       </div>
       <Footer />
+      <ChatBot /> 
     </>
   );
 };

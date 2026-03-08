@@ -9,6 +9,7 @@ import userRouter from "./routes/userRoute.js";
 import cartRouter from "./routes/cartRoute.js";
 import orderRouter from "./routes/orderRoute.js";
 import passport from "./config/passport.js"
+import botRouter from "./routes/botRoute.js";
 
 const app = express();
 const server = http.createServer(app);
@@ -46,6 +47,13 @@ app.use("/images", express.static("uploads"));
 app.use("/api/user", userRouter);
 app.use("/api/cart", cartRouter);
 app.use("/api/order", orderRouter);
+app.use("/api/bot", botRouter);
+app.get("/models", async (req, res) => {
+    const { GoogleGenerativeAI } = await import("@google/generative-ai");
+    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+    const models = await genAI.listModels();
+    res.json(models);
+});
 
 app.get("/", (req, res) => {
   res.status(200).send("Hello World");
