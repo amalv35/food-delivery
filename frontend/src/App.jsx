@@ -10,6 +10,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Verify from "./pages/Verify/Verify";
 import MyOrders from "../pages/MyOrders/MyOrders.";
+import AuthSuccess from "./Auth/AuthSuccess";
 
 const App = () => {
   const [showLoginPopup, setShowLoginPopup] = useState(false);
@@ -33,6 +34,7 @@ const App = () => {
           <Route path="/order" element={<PlaceOrder />} />
           <Route path="/verify" element={<Verify />} />
           <Route path="*" element={<MyOrders />} />
+          <Route path="/auth/success" element={<AuthSuccess />} />
         </Routes>
       </div>
       <Footer />

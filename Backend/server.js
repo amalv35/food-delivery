@@ -8,10 +8,12 @@ import foodRouter from "./routes/foodRoute.js";
 import userRouter from "./routes/userRoute.js";
 import cartRouter from "./routes/cartRoute.js";
 import orderRouter from "./routes/orderRoute.js";
+import passport from "./config/passport.js"
 
 const app = express();
 const server = http.createServer(app);
 const port = process.env.PORT || 8000;
+app.use(passport.initialize());
 
 export const io = new Server(server, {
   cors: { origin: "http://localhost:5173", methods: ["GET", "POST"] },

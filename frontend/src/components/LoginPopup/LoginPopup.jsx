@@ -7,9 +7,7 @@ const LoginPopup = ({ isOpen, onClose }) => {
   const { url, setToken } = useContext(StoreContext);
 
   const [isSignUp, setIsSignUp] = useState(false);
-  
   const [showPassword, setShowPassword] = useState(false);
-  
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -34,7 +32,6 @@ const LoginPopup = ({ isOpen, onClose }) => {
 
     try {
       const response = await axios.post(newUrl, formData);
-
       if (response.data.success) {
         setToken(response.data.token);
         localStorage.setItem("token", response.data.token);
@@ -46,6 +43,11 @@ const LoginPopup = ({ isOpen, onClose }) => {
       console.error("Login error:", error);
       alert(error.response?.data?.message || "Something went wrong. Please try again.");
     }
+  };
+
+  //  redirect to backend Google OAuth route
+  const handleGoogleLogin = () => {
+    window.location.href = `${url}/api/user/auth/google`;
   };
 
   if (!isOpen) return null;
@@ -63,7 +65,7 @@ const LoginPopup = ({ isOpen, onClose }) => {
             />
           </svg>
         </button>
-  
+
         <div className="login-header">
           <h2>{isSignUp ? "Create Account" : "Welcome Back"}</h2>
           <p>{isSignUp ? "Sign up to get started" : "Sign in to continue"}</p>
@@ -100,7 +102,6 @@ const LoginPopup = ({ isOpen, onClose }) => {
 
           <div className="form-group">
             <label htmlFor="password">Password</label>
-          
             <div className="password-input-wrapper">
               <input
                 type={showPassword ? "text" : "password"}
@@ -118,7 +119,6 @@ const LoginPopup = ({ isOpen, onClose }) => {
                 aria-label={showPassword ? "Hide password" : "Show password"}
               >
                 {showPassword ? (
-
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
                     <line x1="1" y1="1" x2="23" y2="23"></line>
@@ -155,7 +155,8 @@ const LoginPopup = ({ isOpen, onClose }) => {
         </div>
 
         <div className="social-login">
-          <button className="social-btn google">
+         
+          <button className="social-btn google" onClick={handleGoogleLogin}>
             <svg width="20" height="20" viewBox="0 0 20 20">
               <path
                 d="M19.6 10.23c0-.82-.1-1.42-.25-2.05H10v3.72h5.5c-.15.96-.74 2.31-2.04 3.22v2.45h3.16c1.89-1.73 2.98-4.3 2.98-7.34z"
@@ -176,7 +177,9 @@ const LoginPopup = ({ isOpen, onClose }) => {
             </svg>
             Google
           </button>
-          <button className="social-btn facebook">
+
+          {/* Facebook button — not implemented yet */}
+          <button className="social-btn facebook" disabled>
             <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
               <path d="M20 10c0-5.523-4.477-10-10-10S0 4.477 0 10c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V10h2.54V7.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V10h2.773l-.443 2.89h-2.33v6.988C16.343 19.128 20 14.991 20 10z" />
             </svg>
