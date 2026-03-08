@@ -6,6 +6,39 @@ A full-featured food delivery web application built with the MERN stack, featuri
 
 ---
 
+## 🌐 Languages Used
+
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
+![Axios](https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white)
+![Socket.io](https://img.shields.io/badge/Socket.io-010101?style=for-the-badge&logo=socket.io&logoColor=white)
+
+### Backend
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
+![Mongoose](https://img.shields.io/badge/Mongoose-880000?style=for-the-badge&logo=mongoose&logoColor=white)
+![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white)
+![Passport](https://img.shields.io/badge/Passport.js-34E27A?style=for-the-badge&logo=passport&logoColor=white)
+
+### Services & Tools
+![Stripe](https://img.shields.io/badge/Stripe-008CDD?style=for-the-badge&logo=stripe&logoColor=white)
+![Google Gemini](https://img.shields.io/badge/Google_Gemini-4285F4?style=for-the-badge&logo=google&logoColor=white)
+![Google OAuth](https://img.shields.io/badge/Google_OAuth-4285F4?style=for-the-badge&logo=google&logoColor=white)
+![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white)
+
+---
+
 ## ✨ Features
 
 ### Customer
@@ -20,42 +53,14 @@ A full-featured food delivery web application built with the MERN stack, featuri
 ### Admin Panel
 - 📊 Revenue & statistics dashboard
 - 🧾 Manage all orders with live updates
-- ➕ Add / remove food items
+- ➕ Add / remove food items with prep time
 - 🔄 Auto order status progression
 - 🗑️ Order deletion with revenue snapshotting
 
 ---
 
-## 🛠️ Tech Stack
-
-### Frontend
-| Tech | Usage |
-|---|---|
-| React + Vite | UI framework |
-| React Router | Navigation |
-| Context API | State management |
-| Socket.io Client | Real-time updates |
-| Axios | API calls |
-| React Icons | Icons |
-| React Toastify | Notifications |
-
-### Backend
-| Tech | Usage |
-|---|---|
-| Node.js + Express | Server |
-| MongoDB + Mongoose | Database |
-| JWT | Authentication |
-| Passport.js | Google OAuth |
-| Stripe | Payments |
-| Socket.io | Real-time |
-| Gemini API | AI chatbot |
-| Multer | File uploads |
-| Helmet | Security headers |
-| express-rate-limit | Rate limiting |
-
----
-
 ## 📁 Project Structure
+
 ```
 food-delivery/
 ├── frontend/          # React + Vite customer app
@@ -149,6 +154,7 @@ npm run dev
 ---
 
 ## 🔄 Order Flow
+
 ```
 User places order
       ↓
@@ -177,6 +183,28 @@ The chatbot uses Google Gemini to provide personalised food recommendations base
 
 ---
 
+## 🧪 Testing
+
+All backend API endpoints were tested using **Postman** including:
+
+| Endpoint | Method | Description |
+|---|---|---|
+| `/api/user/register` | POST | Register new user |
+| `/api/user/login` | POST | Login user |
+| `/api/food/list` | GET | Get all food items |
+| `/api/food/add` | POST | Add food item |
+| `/api/food/remove` | POST | Remove food item |
+| `/api/cart/add` | POST | Add item to cart |
+| `/api/cart/items` | GET | Get cart items |
+| `/api/order/add` | POST | Place order |
+| `/api/order/verify` | POST | Verify Stripe payment |
+| `/api/order/userorders` | GET | Get user orders |
+| `/api/order/list` | GET | Get all orders (admin) |
+| `/api/order/status` | POST | Update order status |
+| `/api/bot/chat` | POST | AI chatbot message |
+
+---
+
 ## 🔒 Security
 
 - JWT authentication with 7 day expiry
@@ -189,7 +217,7 @@ The chatbot uses Google Gemini to provide personalised food recommendations base
 - Password hashing with bcrypt (12 rounds)
 - File upload validation (images only, 5MB max)
 
-
+---
 
 ## 📝 License
 
@@ -199,7 +227,7 @@ MIT License — feel free to use this project for learning or portfolio purposes
 
 ## 🙋‍♂️ Author
 
-**Amal**
+**Amal V**
 - GitHub: [@amalv35](https://github.com/amalv35)
 
 ---
