@@ -1,8 +1,10 @@
-# 🍔 FoodDash — Full Stack Food Delivery App
+#  FoodDash — Full Stack Food Delivery App
 
-A full-featured food delivery web application built with the MERN stack, featuring real-time order tracking, AI-powered food recommendations, and seamless payment integration.
+FoodDash is a production-ready full stack food delivery platform built with the MERN stack. It supports end-to-end ordering — from browsing a dynamic menu to real-time order tracking — with automated status progression that mirrors how modern delivery apps like Swiggy and Zomato operate under the hood.
 
-![FoodDash Banner](./frontend/src/assets/logo.png)
+The platform features dual authentication (email/password and Google OAuth), Stripe-powered payments, and a Socket.io driven real-time pipeline that automatically moves orders through processing, dispatch, and delivery stages based on each food item's prep time — no manual intervention needed.
+
+An AI-powered chatbot built on Google Gemini analyses each user's order history, favourite categories, and the live menu to deliver hyper-personalised food recommendations in natural language. A dedicated admin panel provides live order management, revenue analytics with category breakdowns, and automated order archiving with revenue snapshotting after delivery.
 
 ---
 
