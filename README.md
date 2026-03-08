@@ -187,21 +187,29 @@ The chatbot uses Google Gemini to provide personalised food recommendations base
 
 All backend API endpoints were tested using **Postman** including:
 
-| Endpoint | Method | Description |
-|---|---|---|
-| `/api/user/register` | POST | Register new user |
-| `/api/user/login` | POST | Login user |
-| `/api/food/list` | GET | Get all food items |
-| `/api/food/add` | POST | Add food item |
-| `/api/food/remove` | POST | Remove food item |
-| `/api/cart/add` | POST | Add item to cart |
-| `/api/cart/items` | GET | Get cart items |
-| `/api/order/add` | POST | Place order |
-| `/api/order/verify` | POST | Verify Stripe payment |
-| `/api/order/userorders` | GET | Get user orders |
-| `/api/order/list` | GET | Get all orders (admin) |
-| `/api/order/status` | POST | Update order status |
-| `/api/bot/chat` | POST | AI chatbot message |
+| Endpoint | Method | Auth | Description |
+|---|---|---|---|
+| `/api/user/register` | POST | ❌ | Register new user |
+| `/api/user/login` | POST | ❌ | Login user |
+| `/api/user/auth/google` | GET | ❌ | Google OAuth login |
+| `/api/user/auth/google/callback` | GET | ❌ | Google OAuth callback |
+| `/api/food/add` | POST | ❌ | Add food item (admin) |
+| `/api/food/list` | GET | ❌ | Get all food items |
+| `/api/food/remove` | POST | ❌ | Remove food item (admin) |
+| `/api/cart/add` | POST | ✅ | Add item to cart |
+| `/api/cart/remove` | POST | ✅ | Remove item from cart |
+| `/api/cart/items` | GET | ✅ | Get cart items |
+| `/api/cart/clear` | POST | ✅ | Clear specific cart item |
+| `/api/order/add` | POST | ✅ | Place order + Stripe session |
+| `/api/order/verify` | POST | ❌ | Verify Stripe payment |
+| `/api/order/userorders` | GET | ✅ | Get logged in user's orders |
+| `/api/order/list` | GET | ❌ | Get all orders (admin) |
+| `/api/order/status` | POST | ❌ | Update order status (admin) |
+| `/api/order/delete` | POST | ❌ | Delete order + snapshot revenue |
+| `/api/order/revenue` | GET | ❌ | Get revenue stats (admin) |
+| `/api/bot/chat` | POST | ✅ | AI chatbot message |
+
+> ✅ Requires Bearer token in Authorization header
 
 ---
 
