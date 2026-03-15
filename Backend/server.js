@@ -18,20 +18,41 @@ const app = express();
 const server = http.createServer(app);
 const port = process.env.PORT || 8000;
 
-app.use(helmet());
-app.use(mongoSanitize());
+const corsOptions = {
+  origin: process.env.FRONTEND_URL || "http://localhost:5173",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
+
+app.options(/.*/, cors(corsOptions));
 
 app.use(
-  cors({
-    origin: process.env.FRONTEND_URL || "http://localhost:5173",
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
+  helmet({
+    crossOriginResourcePolicy: { policy: "cross-origin" },
   }),
 );
+
+app.use((req, res, next) => {
+  Object.defineProperty(req, "query", {
+    value: { ...req.query },
+    writable: true,
+    configurable: true,
+    enumerable: true,
+  });
+  next();
+});
+
+app.use(mongoSanitize());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 const generalLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 100,
+  standardHeaders: true,
+  legacyHeaders: false,
   message: {
     success: false,
     message: "Too many requests, please try again later",
@@ -41,6 +62,8 @@ const generalLimiter = rateLimit({
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 10,
+  standardHeaders: true,
+  legacyHeaders: false,
   message: {
     success: false,
     message: "Too many login attempts, please try again later",
@@ -50,16 +73,16 @@ const authLimiter = rateLimit({
 const botLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 30,
+  standardHeaders: true,
+  legacyHeaders: false,
   message: { success: false, message: "Too many bot requests, slow down!" },
 });
 
+app.use(generalLimiter);
 app.use(passport.initialize());
 
 export const io = new Server(server, {
-  cors: {
-    origin: process.env.FRONTEND_URL || "http://localhost:5173",
-    methods: ["GET", "POST"],
-  },
+  cors: corsOptions,
 });
 
 io.on("connection", (socket) => {
@@ -73,12 +96,6 @@ io.on("connection", (socket) => {
   });
 });
 
-// middlewares
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(generalLimiter);
-
-// db config
 connectDB();
 
 // api endpoints
