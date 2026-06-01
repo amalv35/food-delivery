@@ -1,15 +1,19 @@
 .navbar {
-  padding: 20px 8vw;
+  padding: 15px 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: var(--bg-card-solid);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-md);
   position: sticky;
-  top: 0;
+  top: 15px;
   z-index: 100;
-  border-bottom: 2px solid rgba(255, 107, 53, 0.1);
-  transition: padding 0.3s ease;
+  border-radius: 50px;
+  border: 1px solid var(--border-color);
+  margin: 0 4vw;
+  transition: all 0.3s ease;
 }
 
 .navbar .logo {
@@ -91,16 +95,22 @@
   transform: scale(1.1);
 }
 
-.navbar-right .dot {
+.navbar-right .cart-count {
   position: absolute;
-  min-width: 8px;
-  min-height: 8px;
-  background: linear-gradient(135deg, #ff6b35, #ff8c42);
-  border-radius: 50%;
-  top: -5px;
-  right: -5px;
-  box-shadow: 0 0 8px rgba(255, 107, 53, 0.6);
-  animation: pulse 2s infinite;
+  min-width: 18px;
+  height: 18px;
+  background: var(--accent-gradient);
+  color: white;
+  font-size: 11px;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+  top: -8px;
+  right: -8px;
+  box-shadow: 0 0 10px var(--accent-glow);
+  padding: 0 4px;
 }
 
 .search-icon-img,
@@ -376,11 +386,12 @@
     height: 18px;
   }
 
-  .navbar-right .dot {
-    min-width: 7px;
-    min-height: 7px;
-    top: -4px;
-    right: -4px;
+  .navbar-right .cart-count {
+    min-width: 16px;
+    height: 16px;
+    font-size: 10px;
+    top: -6px;
+    right: -6px;
   }
 }
 

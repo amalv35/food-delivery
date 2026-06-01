@@ -4,6 +4,7 @@ import { assets } from "../../assets/assets";
 import ThemeToggle from "../Themes/theme";
 import { Link, useNavigate } from "react-router-dom"; 
 import { StoreContext } from "../../context/StoreContext";
+import { useCartStore } from "../../store/useCartStore";
 
 const Navbar = ({ setShowLoginPopup }) => {
   const [menu, setMenu] = useState("home");
@@ -11,6 +12,7 @@ const Navbar = ({ setShowLoginPopup }) => {
   const [showSearch, setShowSearch] = useState(false);
 
   const { getTotalCartAmount, token, setToken } = useContext(StoreContext);
+  const cartCount = useCartStore((state) => state.cartCount);
   
   const navigate = useNavigate(); 
 
@@ -69,7 +71,7 @@ const Navbar = ({ setShowLoginPopup }) => {
 
         <div className="navbar-search-icon">
           <Link to='/cart'> <img src={assets.basket_icon} alt="cart" /> </Link>
-          <div className={getTotalCartAmount() === 0 ? "" : "dot"}></div>
+          {cartCount > 0 && <div className="cart-count">{cartCount}</div>}
         </div>
         
         <ThemeToggle />

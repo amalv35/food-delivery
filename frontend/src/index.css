@@ -5,12 +5,17 @@
 }
 body {
   min-height: 100vh;
-  font-family: 'Arial', sans-serif;
-   width: 100%;
+  font-family: 'Inter', sans-serif;
+  width: 100%;
   overflow-x: hidden; 
-   box-sizing: border-box;
+  box-sizing: border-box;
   padding: 0;
   margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Outfit', sans-serif;
 }
 a {
   text-decoration: none;

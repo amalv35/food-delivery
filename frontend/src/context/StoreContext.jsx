@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { io } from "socket.io-client";
+import { useCartStore } from "../store/useCartStore";
 
 export const StoreContext = createContext(null);
 
@@ -11,6 +12,18 @@ const StoreContextProvider = (props) => {
   const [token, setToken] = useState("");
   const [food_list, setFoodList] = useState([]);
   const [socket, setSocket] = useState(null);
+
+  const setCartCount = useCartStore((state) => state.setCartCount);
+
+  useEffect(() => {
+    let count = 0;
+    for (const item in cartItems) {
+      if (cartItems[item] > 0) {
+        count += cartItems[item];
+      }
+    }
+    setCartCount(count);
+  }, [cartItems, setCartCount]);
 
   const addToCart = async (itemId) => {
     if (!token) {

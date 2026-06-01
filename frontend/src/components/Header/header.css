@@ -1,14 +1,14 @@
 .header {
     height: 34vw;
-    margin: 30px auto;
+    margin: 30px 4vw;
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover; 
     position: relative;
-    border-radius: 20px;
+    border-radius: 30px;
     overflow: hidden;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-    transition: transform 0.3s ease;
+    box-shadow: var(--shadow-xl);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
 .header:hover {
@@ -83,15 +83,16 @@
     align-items: center;
     gap: 10px;
     border: none;
-    color: #1a1a1a;
+    color: #0f172a;
     font-weight: 600;
     padding: max(1.2vw, 14px) max(2.5vw, 28px);
-    background: linear-gradient(135deg, #ffffff 0%, #f8f8f8 100%);
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
     font-size: max(1.1vw, 14px);
     border-radius: 50px;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
     position: relative;
     overflow: hidden;
 }
